@@ -181,6 +181,19 @@
             })
             })
         })
+        //一进入首页就开始发送Ajax请求,获取用户信息(昵称,头像,)
+        $.ajax({
+           url:'http://localhost:8080/admin/user/info' ,
+           type:'get',
+           success:function(backData){
+               if(backData.code==200){
+                   //把获取到的用户信息填入到对应的标签中
+                   $('.user_info>img').attr('src',backData.data.userpic);
+                   $('.user_info>span').html('欢迎&nbsp;&nbsp'+backData.data.nickname);
+                   $('.user_center_link>img').attr('src',backData.data.userpic);
+               }
+           }
+        })
     })
 </script>
 
